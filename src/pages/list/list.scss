@@ -1,0 +1,44 @@
+list-page {
+  ion-card-content {
+    padding: 13px 13px 13px 13px !important;
+  }
+  .uppercase {
+    text-transform: capitalize;
+  }
+
+  .input-wrapper {
+    padding-left: 16px;
+  }
+
+  .item-md [item-right] {
+    margin: 0;
+  }
+
+  .buttonsize{
+    background-color: darkgreen;
+    size: 10px;
+    color:black;
+  }
+  .placeheader{
+    font-weight: bold;
+  }
+
+  ion-card ion-col {
+    padding-bottom:0px;
+  }
+}
+.iconsize, .pinicon{
+  font-size: 15px;
+  width: 15px;
+}
+
+.iconsize {
+    color: #0c60ee;
+}
+.pinicon{
+  color: #f30d0d;
+}
+
+.textcolor{
+  color: grey;
+}

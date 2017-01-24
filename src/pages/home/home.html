@@ -1,0 +1,57 @@
+
+  <ion-header>
+    <ion-toolbar class="toolbarcolor">
+      <ion-title class="inline">Finder</ion-title>
+      <i class="fa fa-2x fa-podcast align-right" (click)="presentPopover($event)" aria-hidden="true"></i>
+    </ion-toolbar>
+
+    <ion-segment [(ngModel)]="homeView">
+      <ion-segment-button value="homeButton">
+        <ion-icon name = "home"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="all">
+        A-Z
+      </ion-segment-button>
+    </ion-segment>
+  </ion-header>
+
+
+  <ion-content [ngSwitch] = "homeView" padding class="main-view">
+    <div *ngSwitchCase="'all'">
+      <ion-searchbar class="search-bar" (ionInput)="getItems($event)"></ion-searchbar>
+
+        <ion-list >
+          <ion-item-sliding *ngFor="let place of places" >
+            <ion-item  (click)="typeTapped($event, place)">
+                  <i style="width: 50px"  class="fa fa-2x {{place.icon}}" ></i>
+                  <span >{{place.name}}</span>
+            </ion-item>
+            <ion-item-options >
+              <button primary color="primary">
+                <ion-icon name="add-circle" color="primary" (click)="addItemToHome($event,place)"></ion-icon>
+                <span color="primary"> Add</span>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+
+        </ion-list>
+    </div>
+
+
+    <ion-grid *ngSwitchCase="'homeButton'">
+      <div *ngIf="places.length > 0" class="wrapper">
+        <ion-card *ngFor="let place of places" (click)="typeTapped($event, place)">
+          <ion-card-content>
+            <div class="card-header">
+              <i class="fa fa-2x {{place.icon}}"></i>
+            </div>
+            <div class="card-extra">
+              <h4 class="card-heading">{{place.name}}</h4>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-grid>
+
+
+  </ion-content>

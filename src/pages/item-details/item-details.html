@@ -1,0 +1,89 @@
+
+    <ion-header>
+        <ion-navbar>
+            <button menuToggle *ngIf="!selectedItem">
+                <ion-icon name="menu"></ion-icon>
+            </button>
+            <ion-title>{{selectedItem.name}}</ion-title>
+        </ion-navbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-card>
+
+
+
+
+            <map [id]="'map2'"  (mapIsReadyEvent)="mapIsReadyEventHandler($event)"></map>
+
+            <ion-item >
+                <span item-left padding-left="5px" class="nowrap">{{distance}} km</span>
+            </ion-item>
+
+
+        </ion-card>
+
+        <ion-card>
+
+            <ion-card-content >
+
+                <ion-card-header class="headertype">
+                    {{selectedItem.name}}
+                </ion-card-header>
+
+                        <ion-item class="rowborder">
+
+                                <rating [(ngModel)]="selectedItem.rating" readOnly="true" ></rating>
+                                <h5 *ngIf="!selectedItem.rating" class="rating-heading">No Ratings</h5>
+                                <ion-col class="green1"  *ngIf="rating >= 4.5">{{selectedItem.rating}}</ion-col>
+                                <ion-col class="green2"  *ngIf="rating < 4.5 && rating >= 4.0" >{{selectedItem.rating}}</ion-col>
+                                <ion-col class="green3"  *ngIf="rating < 4.0 && rating >= 3.5">{{selectedItem.rating}}</ion-col>
+                                <ion-col class="yellow"  *ngIf="rating < 3.5 && rating >= 2.5">{{selectedItem.rating}}</ion-col>
+                                <ion-col class="red"  *ngIf="rating < 2.5">{{selectedItem.rating}}</ion-col>
+
+
+
+                        </ion-item>
+
+
+                        <ion-item class="rowborder">
+                                <ion-icon item-left name="map" ></ion-icon>
+                                <span item-left>{{selectedItem.vicinity}}</span>
+                        </ion-item>
+
+                        <ion-item class="rowborder">
+                                <ion-icon item-left name="call"></ion-icon>
+                                <span item-left><a href="tel:{{selectedItem.international_phone_number}}">{{selectedItem.international_phone_number}}</a></span>
+
+                        </ion-item>
+
+                <ion-item class="rowborder">
+                        <ion-icon item-left name="globe"></ion-icon>
+                        <span item-left><a href="{{selectedItem.website}}">{{selectedItem.website}}</a></span>
+
+                </ion-item>
+
+                            <ion-item *ngIf="selectedItem.opening_hours">
+                                    <ion-icon item-left name="time"></ion-icon>
+                                    <span item-left> {{selectedItem.opening_hours.weekday_text[weekday]}}:
+                          <span item-left *ngIf="selectedItem.opening_hours.open_now" class="open-label"> open
+                          </span>
+                          <span item-left *ngIf="!selectedItem.opening_hours.open_now" class="closed-label"> closed
+                          </span>
+                    </span>
+
+
+                                <ion-icon *ngIf="showopeningtimes == true" item-right name="arrow-dropup" (click)="showtimes($event, showopeningtimes)"></ion-icon>
+                                <ion-icon *ngIf="showopeningtimes == false" item-right name="arrow-dropdown" (click)="showtimes($event, showopeningtimes)"></ion-icon>
+                            </ion-item>
+
+                <ion-list  *ngIf="showopeningtimes == true" >
+                    <ion-row class="weekdayitem" *ngFor="let weekdaytext of selectedItem.opening_hours.weekday_text"> {{weekdaytext}}</ion-row>
+                </ion-list>
+            </ion-card-content>
+
+
+        </ion-card>
+
+
+    </ion-content>

@@ -1,0 +1,45 @@
+<ion-header>
+
+    <ion-navbar color="white">
+        <ion-title class="uppercase">{{selectedType.name}}</ion-title>
+    </ion-navbar>
+    <ion-segment [(ngModel)]="information">
+
+        <ion-segment-button value="list" (ionSelect)="showMap(false)">
+            List
+        </ion-segment-button>
+        <ion-segment-button value="mapView" (ionSelect)="showMap(true)">
+            Map
+        </ion-segment-button>
+    </ion-segment>
+
+</ion-header>
+
+<ion-content class="list-view" [ngSwitch]="information">
+
+    <ion-list *ngSwitchCase="'list'">
+        <ion-card-content>
+            <ion-card *ngFor="let place of places" (click)="itemTapped($event, place)">
+                <ion-row>
+                    <ion-col width-100>
+                        <h2 class="placeheader">{{place.name}}</h2>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col width-100>
+                        <ion-icon class="iconsize" item-left name="map"></ion-icon>
+                        <span class="textcolor">{{place.vicinity}}</span>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col width-100>
+                        <ion-icon class="pinicon" item-left name="pin"></ion-icon>
+                        <span class="textcolor">{{place.distance}} km</span>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+        </ion-card-content>
+    </ion-list>
+    <map *ngSwitchCase="'mapView'" [id]="'map'" (mapIsReadyEvent)="mapIsReadyEventHandler($event)"></map>
+
+</ion-content>

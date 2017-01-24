@@ -1,0 +1,129 @@
+item-details {
+  ul {
+    padding: 0px;
+    display:inline;
+    &.rating li {
+      background: none;
+      color: #ffb400;
+      ion-icon {
+        font-size: 15px;
+      }
+    }
+  }
+
+  ul.rating > li {
+    padding:0px !important;
+  }
+
+  span:not(.nowrap) {
+    width: 100%;
+  }
+
+  .rating-heading {
+    padding-left: 5px;
+    display:inline;
+  }
+
+  .centered {
+    text-align:center;
+  }
+  i.google-mark {
+    color: #ff4d4d;
+    font-size: 21px;
+  }
+
+  div.address-info {
+    text-align: center;
+  }
+
+  div.address-info > h5 {
+    display: inline;
+    padding-left: 7px;
+  }
+
+  .name-heading {
+    text-transform: uppercase;
+  }
+
+  span.closed-label {
+    text-transform: uppercase;
+    color: #ff4d4d;
+  }
+
+  span.open-label {
+    text-transform: uppercase;
+    color: #33cc33;
+  }
+
+  ion-col span {
+    padding-left: 6px;
+  }
+
+  .nowrap {
+    white-space: nowrap;
+  }
+
+  .teststyle{
+    background: #33cc33;
+  }
+  .rowborder{
+    border-bottom: 1px solid lightgrey;
+
+  }
+  .headertype{
+    font-size: 20px;
+    padding: 0px;
+  }
+.weekdayitem{
+  margin:0px;
+  padding-left: 40px;
+  font-size: 15px;
+  padding-bottom: 5px;
+}
+.green1{
+  width:35px;
+  background-color: darkgreen;
+  color: white;
+  border: 1px solid;
+  border-color: lightgrey;
+  text-align: center;
+  font-size: 15px
+}
+  .green2{
+    width:35px;
+    background-color: rgba(0, 128, 0, 0.73);
+    color: white;
+    border: 1px solid;
+    border-color: lightgrey;
+    text-align: center;
+    font-size: 15px
+  }
+  .green3{
+    width:35px;
+    background-color: limegreen;
+    color: white;
+    border: 1px solid;
+    border-color: lightgrey;
+    text-align: center;
+    font-size: 15px
+  }
+  .yellow{
+    width:35px;
+    background-color: yellow;
+    color: white;
+    border: 1px solid;
+    border-color: lightgrey;
+    text-align: center;
+    font-size: 15px
+  }
+  .red{
+    width:35px;
+    background-color: red;
+    color: white;
+    border: 1px solid;
+    border-color: lightgrey;
+    text-align: center;
+    font-size: 15px
+  }
+
+}
