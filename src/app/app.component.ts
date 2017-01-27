@@ -22,10 +22,10 @@ export class MyApp {
       Splashscreen.hide();
     });
     this.pages = [
-      { title: 'Hello Ionic', component: HomePage },
-      { title: 'sataana', component: ListPage },
-      { title: 'jee', component: ItemDetailsPage },
-      { title: 'perkele', component: MapComponent }
+      { title: 'Home', component: HomePage },
+      { title: 'Place List', component: ListPage },
+      { title: 'Details', component: ItemDetailsPage },
+      { title: 'Map', component: MapComponent }
     ];
   }
 
