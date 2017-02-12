@@ -74,56 +74,29 @@ item-details {
     font-size: 20px;
     padding: 0px;
   }
-.weekdayitem{
-  margin:0px;
-  padding-left: 40px;
-  font-size: 15px;
-  padding-bottom: 5px;
-}
-.green1{
-  width:35px;
-  background-color: darkgreen;
-  color: white;
-  border: 1px solid;
-  border-color: lightgrey;
-  text-align: center;
-  font-size: 15px
-}
-  .green2{
+  .weekdayitem {
+    margin:0px;
+    padding-left: 40px;
+    font-size: 15px;
+    padding-bottom: 5px;
+  }
+
+  .green, .yellow, .red {
     width:35px;
-    background-color: rgba(0, 128, 0, 0.73);
+    background-color: darkgreen;
     color: white;
     border: 1px solid;
     border-color: lightgrey;
     text-align: center;
     font-size: 15px
   }
-  .green3{
-    width:35px;
-    background-color: limegreen;
-    color: white;
-    border: 1px solid;
-    border-color: lightgrey;
-    text-align: center;
-    font-size: 15px
-  }
-  .yellow{
-    width:35px;
-    background-color: yellow;
-    color: white;
-    border: 1px solid;
-    border-color: lightgrey;
-    text-align: center;
-    font-size: 15px
-  }
-  .red{
-    width:35px;
-    background-color: red;
-    color: white;
-    border: 1px solid;
-    border-color: lightgrey;
-    text-align: center;
-    font-size: 15px
-  }
+
+  .yellow {
+      background-color: yellow;
+    }
+
+  .red {
+      background-color: red;
+    }
 
 }

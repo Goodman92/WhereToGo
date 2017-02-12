@@ -5,6 +5,7 @@ import { PlacesService } from '../../providers/places-service/places-service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { MapComponent } from '../map/map';
+import { LocationModel } from "../home/geo.model";
 import _ from 'underscore';
 
 @Component({
@@ -14,16 +15,10 @@ import _ from 'underscore';
 })
 export class ListPage {
     selectedType: any;
-    selectedItem: any;
-    placesURL: string;
-    public places: any;
+    places: any;
     information: string;
     radius: any;
-    location: {
-        string,
-        lat,
-        lon
-    };
+    location: LocationModel
     loading: LoadingController;
 
     @ViewChild(MapComponent) mapReference;
@@ -39,14 +34,16 @@ export class ListPage {
     }
 
     ionViewWillEnter() {
-        if (this.mapReference) {
-            this.mapReference.setMapVisibility(true);
-        }
+        this.mapVisibility(true);
     }
 
     ionViewWillLeave() {
+        this.mapVisibility(false);
+    }
+
+    mapVisibility(trigger) {
         if (this.mapReference) {
-            this.mapReference.setMapVisibility(false);
+            this.mapReference.setMapVisibility(trigger);
         }
     }
 
@@ -54,9 +51,6 @@ export class ListPage {
         this.placeSelected(item.place_id);
     }
 
-    showMap(value) {
-        this.mapReference.setMapVisibility(value);
-    }
 
     placeSelected(placeId) {
         let load = this.loading.create({

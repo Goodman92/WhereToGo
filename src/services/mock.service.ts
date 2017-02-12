@@ -7,6 +7,35 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/forkJoin';
 
+@Injectable()
+export class MenuService {
+
+    constructor(private http:Http) { }
+
+    getPlaces():any {
+        var forkArray = [];
+        for (var i = 0; i < PLACE_TYPES.length; i++) {
+            forkArray.push(this.http
+                .get(this.parseUrl(PLACE_TYPES[i].type))
+                .map(this.extractData));
+        }
+
+        return Observable.forkJoin(forkArray);
+    }
+
+    private parseUrl(type:string):string {
+        return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=61.497452,23.766331&radius=3500&type=" + type + "&key=AIzaSyBD5vg-bVFxKjF9o4JE6_5olRnQFB9Xe1U";
+    }
+
+    extractData(res:Response) {
+        return (res.json().results.length !== 0 ) ? res.json() : null;
+    }
+
+    handleError(error:Error | any) {
+        console.log(error);
+    }
+}
+
 export const PLACE_TYPES:any = [
     {
         type: "accounting",
@@ -323,34 +352,3 @@ export const PLACE_TYPES:any = [
         icon: "fa-globe"
     }, {type: "zoo", icon: "fa-globe"}
 ];
-@Injectable()
-export class MenuService {
-
-    constructor(private http:Http) {
-    }
-
-    getPlaces():any {
-        var forkArray = [];
-        for (var i = 0; i < PLACE_TYPES.length; i++) {
-            forkArray.push(this.http
-                .get(this.parseUrl(PLACE_TYPES[i].type))
-                .map(this.extractData));
-        }
-
-        return Observable.forkJoin(forkArray);
-    }
-
-    private parseUrl(type:string):string {
-        //return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=61.497452,23.766331&radius=3500&type=" + type + "&key=AIzaSyBcev7KMgZiqmuL3koQyXjOM8TyEvfp-8I";
-        return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=61.497452,23.766331&radius=3500&type=" + type + "&key=AIzaSyBD5vg-bVFxKjF9o4JE6_5olRnQFB9Xe1U";
-    }
-
-    extractData(res:Response) {
-        console.log(res.json());
-        return (res.json().results.length !== 0 ) ? res.json() : null;
-    }
-
-    handleError(error:Error | any) {
-        console.log("virhe");
-    }
-}

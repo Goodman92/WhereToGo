@@ -5,10 +5,10 @@
     </ion-navbar>
     <ion-segment [(ngModel)]="information">
 
-        <ion-segment-button value="list" (ionSelect)="showMap(false)">
+        <ion-segment-button value="list" (ionSelect)="mapVisibility(false)">
             List
         </ion-segment-button>
-        <ion-segment-button value="mapView" (ionSelect)="showMap(true)">
+        <ion-segment-button value="mapView" (ionSelect)="mapVisibility(true)">
             Map
         </ion-segment-button>
     </ion-segment>

@@ -3,6 +3,7 @@ import { NavController, NavParams, Platform } from 'ionic-angular';
 import { MapComponent } from "../map/map";
 import { Ionic2Rating } from 'ionic2-rating';
 import { PlacesService } from '../../providers/places-service/places-service';
+import { DetailsModel } from "./details.model";
 
 @Component({
     templateUrl: 'item-details.html',
@@ -10,45 +11,30 @@ import { PlacesService } from '../../providers/places-service/places-service';
     providers: [PlacesService]
 })
 export class ItemDetailsPage {
-    selectedItem: any;
     @ViewChild(MapComponent) mapReference;
+    selectedItem: any;
+    details: DetailsModel;
     icons: string;
-    public details: any;
-    location: any;
-    distance: any;
-    weekday: any;
-    showopeningtimes: boolean;
-    rating: number;
+    location: string;
 
     constructor(public navCtrl: NavController, navParams: NavParams, private platform: Platform, public placesService: PlacesService) {
         this.location = navParams.get('location') || undefined;
         this.selectedItem = navParams.get('item') || 'undefined';
+        let distance = this.placesService.getDistance(this.location, this.selectedItem.geometry.location).toFixed(2);
         this.icons = "map";
-        this.distance = this.placesService.getDistance(this.location, this.selectedItem.geometry.location).toFixed(2);
-        this.weekday = new Date().getDay() - 1;
-        this.showopeningtimes = false;
-        this.rating = parseFloat(this.selectedItem.rating);
-        console.log("details: constructor");
+        this.details = new DetailsModel(false, this.selectedItem.rating, distance);
     }
 
     showtimes(event, times) {
-        if (times == true)
-            this.showopeningtimes = false;
-        else
-            this.showopeningtimes = true;
+        this.details.openings = !times;
     }
-    ionViewDidEnter() {
-        console.log("details: ionViewDidEnter");
-        if (this.mapReference) {
-      //      this.mapReference.setMapVisibility(true);
-        }
-    }
+
     mapIsReadyEventHandler(event) {
-        console.log("mapIsReadyEventHandler");
         this.mapReference.setMapVisibility(true);
         this.mapReference.setMarker(this.selectedItem.geometry.location, this.selectedItem.name);
         this.mapReference.moveMapPosition(this.selectedItem.geometry.location.lat, this.selectedItem.geometry.location.lng);
     }
+
     ionViewWillLeave() {
         if (this.mapReference) {
             this.mapReference.setMapVisibility(false);

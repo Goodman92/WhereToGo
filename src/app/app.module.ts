@@ -3,7 +3,8 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { HomePage, PopoverPage } from '../pages/home/home';
+import { HomePage } from '../pages/home/home';
+import {PopoverComponent } from "../pages/home/popover/popover.component";
 import { MapComponent } from '../pages/map/map';
 import { Ionic2RatingModule } from 'ionic2-rating';
 @NgModule({
@@ -13,7 +14,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     ItemDetailsPage,
     HomePage,
     MapComponent,
-    PopoverPage
+    PopoverComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -25,7 +26,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     ListPage,
     ItemDetailsPage,
     HomePage,
-    MapComponent,PopoverPage
+    MapComponent,
+    PopoverComponent
   ],
   providers: []
 })
